@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-images',
@@ -13,34 +13,32 @@ export class ImagesComponent implements OnInit {
   filterForm: FormGroup;
   images: any[] = [];
   keywordFilter$ = new Subject<string>();
+  keywordFormControl: FormControl;
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({
       keywordFilter: [''],
     });
 
-    this.filterForm
-      ?.get('keywordFilter')
-      ?.valueChanges.pipe(
+    this.keywordFormControl = this.filterForm.get('keywordFilter') as FormControl; 
+
+    this.keywordFormControl.valueChanges
+      .pipe(
         debounceTime(300),
         distinctUntilChanged()
       )
-      ?.subscribe((value) => {
+      .subscribe((value) => {
         if (value) {
           this.keywordFilter$.next(value);
         }
       });
 
     this.keywordFilter$.subscribe((keyword) => {
-      if (keyword) {
-        this.filterImages(keyword);
-      }
+      this.filterImages(keyword);
     });
-
   }
 
   ngOnInit() {
-    // Carregar imagens iniciais do armazenamento local
     const storedImages = localStorage.getItem('storedImages');
     if (storedImages) {
       this.images = JSON.parse(storedImages);
@@ -61,8 +59,8 @@ export class ImagesComponent implements OnInit {
 
   filterImages(keyword: string) {
     if (keyword) {
-      this.images = this.images.filter((image) =>
-        image.keywords.includes(keyword)
+      this.images = _.filter(this.images, (image) =>
+        _.includes(image.keywords, keyword)
       );
     } else {
       const storedImages = localStorage.getItem('storedImages');
