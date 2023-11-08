@@ -1,22 +1,38 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.scss']
+  styleUrls: ['./upload.component.scss'],
 })
 export class UploadComponent {
   uploadForm: FormGroup;
-  constructor() {
-    this.uploadForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]*$/)]),
-      keywords: new FormControl([], [Validators.required]),
-      createdOn: new FormControl(new Date(), [Validators.required]),
+
+  constructor(private fb: FormBuilder) {
+    this.uploadForm = this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      keywords: this.fb.array([]),
+      createdOn: [new Date(), Validators.required],
     });
   }
-  
-  // Implementar a lógica para habilitar/desabilitar o botão "Finalizar Upload" quando o formulário for válido e a função para salvar os dados no localStorage.
+
+  onSubmit() {
+    /* if (this.uploadForm.valid) {
+      const uploadedImages = JSON.parse(localStorage.getItem('storedImages')) || [];
+      uploadedImages.push(this.uploadForm.value);
+      localStorage.setItem('storedImages', JSON.stringify(uploadedImages));
+      this.uploadForm.reset();
+    } */
+  }
+
+  addKeyword() {
+    this.keywords.push(this.fb.control(''));
+  }
+
+  get keywords() {
+    return this.uploadForm.get('keywords') as FormArray;
+  }
 }

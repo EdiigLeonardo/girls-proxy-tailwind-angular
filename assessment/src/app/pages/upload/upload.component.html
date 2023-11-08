@@ -1,1 +1,36 @@
-<p>upload works!</p>
+<div>
+  <h1>Upload Images</h1>
+
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Title:</label>
+      <input type="text" formControlName="title" />
+    </div>
+
+    <div>
+      <label>Description:</label>
+      <input type="text" formControlName="description" />
+    </div>
+
+    <div>
+      <label>Price:</label>
+      <input type="text" formControlName="price" />
+    </div>
+
+    <div>
+      <label>Keywords:</label>
+      <div *ngFor="let keyword of keywords.controls; let i = index">
+        <input type="text" [formControlName]="i" />
+      </div>
+      <button type="button" (click)="addKeyword()">Add Keyword</button>
+    </div>
+
+    <div>
+      <label>Created On:</label>
+      <input type="text" formControlName="createdOn" />
+    </div>
+
+    <button type="submit" [disabled]="uploadForm.invalid">Finalize Upload</button>
+  </form>
+</div>
+

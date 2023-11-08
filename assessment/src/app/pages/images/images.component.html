@@ -1,1 +1,16 @@
-<p>images works!</p>
+<div>
+  <h1>Images</h1>
+
+  <input
+    type="text"
+    [formControl]="filterForm.get('keywordFilter')"
+    placeholder="Filter by Keyword"
+  />
+
+  <div *ngFor="let image of images">
+    <div>
+      <img [src]="image.url" alt="{{ image.title }}" />
+      <button (click)="deleteImage(image)">Delete</button>
+    </div>
+  </div>
+</div>
