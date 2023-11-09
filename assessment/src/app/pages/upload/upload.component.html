@@ -8,7 +8,7 @@
     </div>
 
     <div>
-      <label>Title:</label>
+      <label>Image:</label>
       <input type="file" formControlName="image" />
     </div>
 
@@ -19,7 +19,7 @@
 
     <div>
       <label>Price:</label>
-      <input type="text" formControlName="price" />
+      <input type="number" formControlName="price" />
     </div>
 
     <div formArrayName="keywords">
@@ -32,7 +32,7 @@
 
     <div>
       <label>Created On:</label>
-      <input type="text" formControlName="createdOn" />
+      <input type="date" formControlName="createdOn" />
     </div>
 
     <div *ngIf="uploadForm.get('image')?.value">

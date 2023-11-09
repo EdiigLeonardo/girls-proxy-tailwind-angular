@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import * as _ from 'lodash';
-
+import { data } from 'src/app/services/mockData';
+import { girlImages } from 'src/app/services/mockData';
 @Component({
   selector: 'app-images',
   templateUrl: './images.component.html',
@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 })
 export class ImagesComponent implements OnInit {
   filterForm: FormGroup;
-  images: any[] = [];
+  images: data[] = [];
   keywordFilter$ = new Subject<string>();
   keywordFormControl: FormControl;
 
@@ -39,13 +39,15 @@ export class ImagesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.images = [...girlImages]; // girlImages é o mockData fornecido
+
     const storedImages = localStorage.getItem('storedImages');
     if (storedImages) {
       this.images = JSON.parse(storedImages);
     }
   }
 
-  deleteImage(image: any) {
+  deleteImage(image: data) {
     const index = this.images.indexOf(image);
     if (index !== -1) {
       this.images.splice(index, 1);
@@ -59,8 +61,8 @@ export class ImagesComponent implements OnInit {
 
   filterImages(keyword: string) {
     if (keyword) {
-      this.images = _.filter(this.images, (image) =>
-        _.includes(image.keywords, keyword)
+      this.images = this.images.filter((image) =>
+        image.keywords.includes(keyword)
       );
     } else {
       const storedImages = localStorage.getItem('storedImages');

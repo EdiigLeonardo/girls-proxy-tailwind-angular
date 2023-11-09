@@ -8,12 +8,11 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 })
 export class UploadComponent {
   uploadForm: FormGroup;
-
   constructor(private fb: FormBuilder) {
     this.uploadForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      price: [null, [Validators.required, Validators.pattern(/^\d+$/)]],
       keywords: this.fb.array([]),
       createdOn: [new Date(), Validators.required],
       image: [null, Validators.required],
@@ -22,22 +21,21 @@ export class UploadComponent {
 
   onSubmit() {
     if (this.uploadForm.valid) {
-      const formData = new FormData();
-      const formControls = ['title', 'description', 'price', 'createdOn', 'image'];
-  
+      const formControls = ['title', 'description', 'price', 'keywords', 'createdOn', 'image'];
+
       for (const controlName of formControls) {
         const control = this.uploadForm.get(controlName);
         if (control) {
-          formData.append(controlName, control.value);
+          console.log('FormData:', controlName, control.value);
         }
       }
-      console.log(formData);
     } else {
       console.log('Formulário inválido');
     }
-    this.uploadForm.reset();
+
+    //this.uploadForm.reset();
   }
-  
+
 
   onImageChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
