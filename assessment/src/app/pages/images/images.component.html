@@ -1,14 +1,25 @@
-<div class="flex flex-col justify-content align-items max-w-screen max-h-full">
-  <input
-    type="text"
-    [formControl]="keywordFormControl"
-    placeholder="Filter by Keyword"
-  />
-
-  <div *ngFor="let image of images" class="grid max-w-screen">
-    <div class="">
-      <img [src]="image.image" alt="{{ image.title }}" class="object-cover max-w-[20rem] h-full" />
-      <button (click)="deleteImage(image)">Delete</button>
+<div class="image_layout">
+  <div class="image_header">
+    <span>Listagem</span>
+    <span>icone vermelho| Fazer Upload</span>
+  </div>
+  <div class="image_icons">
+    <span>Icone de fotografia</span>
+    <span>Icone de Botão para baixo</span>
+    <input type="text" [formControl]="keywordFormControl" placeholder="Filter by Keyword" />
+    <span>icone de procura</span>
+  </div>
+  <div class="card_container">
+    <div *ngFor="let item of images" class="card_image">
+      <div class="image_container">
+        <img [src]="item.image" alt="{{ item.title }}" class=" max-w-full max-h-full" />
+        <button (click)="deleteImage(item)">Delete</button>
+      </div>
+      <div class="description_container">
+        <span class="description">{{item.description}}</span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
 </div>
