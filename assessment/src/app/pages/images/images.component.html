@@ -1,14 +1,13 @@
-<div class="flex flex-column justify-content align-items max-w-screen max-h-full">
-  <h1>Images</h1>
+<div class="flex flex-col justify-content align-items max-w-screen max-h-full">
   <input
     type="text"
     [formControl]="keywordFormControl"
     placeholder="Filter by Keyword"
   />
 
-  <div *ngFor="let image of images">
-    <div>
-      <img [src]="image.image" alt="{{ image.title }}" class="object-cover max-w-[20.6rem] h-full" />
+  <div *ngFor="let image of images" class="grid max-w-screen">
+    <div class="">
+      <img [src]="image.image" alt="{{ image.title }}" class="object-cover max-w-[20rem] h-full" />
       <button (click)="deleteImage(image)">Delete</button>
     </div>
   </div>
