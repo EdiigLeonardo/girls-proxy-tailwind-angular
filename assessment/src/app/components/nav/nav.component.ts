@@ -8,14 +8,23 @@ import { Component, OnInit } from '@angular/core';
 
 export class NavComponent {
 
-  constructor() { }
+  nav: boolean = false;
+  shadow: boolean = false;
+  navBg: string = 'white';
+  linkColor: string = '#1f2937';
 
-  get isScrolled() {
-    return window.scrollY > 50;
+  handleNav() {
+    this.nav = !this.nav;
   }
 
-  /* setShadow() {
-    this.nav.classList.toggle('shadow', this.isScrolled);
+  ngOnInit() {
+    const handleShadow = () => {
+      if (window.scrollY >= 90) {
+        this.shadow = true;
+      } else {
+        this.shadow = false;
+      }
+    };
+    window.addEventListener('scroll', handleShadow);
   }
- */
 }

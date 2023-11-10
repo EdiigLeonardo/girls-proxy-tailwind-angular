@@ -39,7 +39,7 @@ export class ImagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.images = [...girlImages]; // girlImages é o mockData fornecido
+    this.images = [...girlImages]; 
 
     const storedImages = localStorage.getItem('storedImages');
     if (storedImages) {
