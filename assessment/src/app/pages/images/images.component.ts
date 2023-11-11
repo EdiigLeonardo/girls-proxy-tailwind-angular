@@ -4,16 +4,27 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { data } from 'src/app/services/mockData';
 import { girlImages } from 'src/app/services/mockData';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
+
+
 @Component({
   selector: 'app-images',
   templateUrl: './images.component.html',
   styleUrls: ['./images.component.scss'],
 })
 export class ImagesComponent implements OnInit {
+  faSearch = faSearch;
+  faImage = faImage;
+  faTrash = faTrash;
+  faDownload = faDownload;
   filterForm: FormGroup;
   images: data[] = [];
   keywordFilter$ = new Subject<string>();
   keywordFormControl: FormControl;
+  isHovered: boolean = false;
 
   constructor(private fb: FormBuilder) {
     this.filterForm = this.fb.group({

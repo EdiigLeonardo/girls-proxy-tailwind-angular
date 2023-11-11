@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ImagesRoutingModule } from './images-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ImagesComponent } from 'src/app/pages/images/images.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { ImagesComponent } from 'src/app/pages/images/images.component';
   imports: [
     CommonModule,
     ImagesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ]
 })
 export class ImagesModule { }

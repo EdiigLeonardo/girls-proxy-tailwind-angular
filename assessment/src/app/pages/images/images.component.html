@@ -1,24 +1,28 @@
-<div class="image_layout">
-  <div class="image_header">
-    <span>Listagem</span>
-    <span>icone vermelho| Fazer Upload</span>
-  </div>
+<div class="image_layout bg-slate-50">
   <div class="image_icons">
-    <span>Icone de fotografia</span>
-    <span>Icone de Botão para baixo</span>
-    <input type="text" [formControl]="keywordFormControl" placeholder="Filter by Keyword" />
-    <span>icone de procura</span>
+    <div class="form-control">
+      <label class="input-group">
+        <span><fa-icon [icon]="faImage"></fa-icon></span>
+        <input type="text" [formControl]="keywordFormControl" placeholder="Filter by Keyword"
+          class="input input-bordered" />
+        <span><fa-icon [icon]="faSearch"></fa-icon></span>
+      </label>
+    </div>
   </div>
   <div class="card_container">
     <div *ngFor="let item of images" class="card_image">
       <div class="image_container">
-        <img [src]="item.image" alt="{{ item.title }}" class=" image max-w-full max-h-full" />
-        <button (click)="deleteImage(item)" class="btn btn-error">Delete</button>
+        <img [src]="item.image" alt="{{ item.title }}" class="image max-w-full max-h-full" />
+        <button (click)="deleteImage(item)" class="btn btn-ghost btn-icon-delete">
+          <fa-icon [icon]='faTrash'></fa-icon>
+        </button>
+        <button (click)="deleteImage(item)" class="btn btn-ghost btn-icon-download">
+          <fa-icon [icon]='faDownload'></fa-icon>
+        </button>
       </div>
       <div class="description_container">
         <span class="description">{{item.description}}</span>
-        <span></span>
-        <span></span>
+        <span class="text-[red]">{{item.title}}</span>
       </div>
     </div>
   </div>

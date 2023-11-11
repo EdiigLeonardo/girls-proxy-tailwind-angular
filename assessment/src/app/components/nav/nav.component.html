@@ -1,49 +1,10 @@
-
-<div [ngStyle]="{'background-color': navBg}"
-     class="fixed w-full h-20"
-     [ngClass]="{'shadow-xl': shadow, 'z-100': true}">
-  <div class="flex justify-between items-center w-full h-full px-2 2xl:px-16">
-    <div>
-      <ul [ngStyle]="{'color': linkColor}" class="hidden md:flex">
-        <li class="ml-10 text-sm uppercase hover:border-b">
-          <a routerLink="upload">Upload Images</a>
-        </li>
-        <li class="ml-10 text-sm uppercase hover:border-b">
-          <a routerLink="images">Images List</a>
-        </li>
-      </ul>
-      <!-- Hamburger Icon -->
-      <div [ngStyle]="{'color': linkColor}" (click)="handleNav()" class="md:hidden z-500">
-        <!-- <AiOutlineMenu size="25"></AiOutlineMenu> -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <!-- Overlay -->
-  <div [ngClass]="{'md:hidden fixed left-0 top-0 w-full h-screen bg-black/70': nav}">
-    <!-- Side Drawer Menu -->
-    <div [ngClass]="{
-      'fixed left-0 top-0 bottom-0 w-75 sm:w-60 md:w-45 h-full bg-ecf0f3 p-10 ease-in duration-500': nav,
-      'fixed left-[-150%] top-0 p-10 ease-in duration-10': !nav
-    }">
-      <div>
-        <div class="flex w-full items-center justify-between">
-          <div (click)="handleNav()" class="rounded-full shadow-lg shadow-gray-400 p-3 cursor-pointer">
-            <!-- <AiOutlineClose></AiOutlineClose> -->
-          </div>
-        </div>
-      </div>
-      <div class="py-4 flex flex-col">
-        <ul class="uppercase">
-          <li (click)="handleNav()" class="py-4 text-sm">
-            <a routerLink="upload">Upload</a>
-          </li>
-          <li (click)="handleNav()" class="py-4 text-sm">
-            <a routerLink="images" class="h-full">Imagens</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<div class="nav_header">
+  <h1>Listagem</h1>
+  <span></span>
+  <span class="btn btn-ghost bg-[#ff000080]">
+    <a routerLink="upload">Fazer Upload</a>
+  </span>
+  <span class="btn btn-ghost bg-[#ff000080]">
+    <a routerLink="images">Ver Imagens</a>
+  </span>
 </div>

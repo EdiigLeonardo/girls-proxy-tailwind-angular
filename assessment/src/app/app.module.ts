@@ -8,6 +8,7 @@ import { ImagesComponent } from './pages/images/images.component';
 import { NavComponent } from './components/nav/nav.component';
 import { UploadModule } from './modules/upload/upload.module';
 import { ImagesModule } from './modules/images/images.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ImagesModule } from './modules/images/images.module';
     AppRoutingModule,
     NgbModule,
     UploadModule,
-    ImagesModule
+    ImagesModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
