@@ -9,7 +9,7 @@
 
     <div>
       <label>Image:</label>
-      <input type="file" formControlName="image" />
+      <input type="file" formControlName="image" (change)="onImageChange($event)"   />
     </div>
 
     <div>
@@ -35,9 +35,10 @@
       <input type="date" formControlName="createdOn" />
     </div>
 
-    <div *ngIf="uploadForm.get('image')?.value">
+
+    <div *ngIf="previewSafeUrl">
       <label>Image Preview:</label>
-      <img [src]="uploadForm.get('image')?.value" alt="Preview" />
+      <img [src]="previewSafeUrl" alt="Preview" />
     </div>
 
     <button type="submit">Finalize Upload</button>

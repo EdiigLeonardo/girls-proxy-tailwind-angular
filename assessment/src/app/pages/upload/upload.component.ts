@@ -7,8 +7,9 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./upload.component.scss'],
 })
 export class UploadComponent {
+  previewSafeUrl: any;
   uploadForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder ) {
     this.uploadForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -36,7 +37,6 @@ export class UploadComponent {
     //this.uploadForm.reset();
   }
 
-
   onImageChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
@@ -44,9 +44,8 @@ export class UploadComponent {
       const imageControl = this.uploadForm.get('image');
       const titleControl = this.uploadForm.get('title');
 
-      if (imageControl) {
-        imageControl.setValue(file);
-      }
+      var url = URL.createObjectURL(file);
+      this.previewSafeUrl=url;
 
       if (titleControl) {
         titleControl.setValue(file.name);

@@ -12,8 +12,8 @@
   <div class="card_container">
     <div *ngFor="let item of images" class="card_image">
       <div class="image_container">
-        <img [src]="item.image" alt="{{ item.title }}" class=" max-w-full max-h-full" />
-        <button (click)="deleteImage(item)">Delete</button>
+        <img [src]="item.image" alt="{{ item.title }}" class=" image max-w-full max-h-full" />
+        <button (click)="deleteImage(item)" class="btn btn-error">Delete</button>
       </div>
       <div class="description_container">
         <span class="description">{{item.description}}</span>

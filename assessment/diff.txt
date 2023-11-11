@@ -1,0 +1,68 @@
+diff --git a/assessment/src/app/pages/upload/upload.component.html b/assessment/src/app/pages/upload/upload.component.html
+index 25093f1..fdfe733 100644
+--- a/assessment/src/app/pages/upload/upload.component.html
++++ b/assessment/src/app/pages/upload/upload.component.html
+@@ -9,7 +9,7 @@
+ 
+     <div>
+       <label>Image:</label>
+-      <input type="file" formControlName="image" />
++      <input type="file" formControlName="image" (change)="onImageChange($event)"   />
+     </div>
+ 
+     <div>
+@@ -35,9 +35,10 @@
+       <input type="date" formControlName="createdOn" />
+     </div>
+ 
+-    <div *ngIf="uploadForm.get('image')?.value">
++
++    <div *ngIf="previewSafeUrl">
+       <label>Image Preview:</label>
+-      <img [src]="uploadForm.get('image')?.value" alt="Preview" />
++      <img [src]="previewSafeUrl" alt="Preview" />
+     </div>
+ 
+     <button type="submit">Finalize Upload</button>
+diff --git a/assessment/src/app/pages/upload/upload.component.ts b/assessment/src/app/pages/upload/upload.component.ts
+index faea48c..939c87d 100644
+--- a/assessment/src/app/pages/upload/upload.component.ts
++++ b/assessment/src/app/pages/upload/upload.component.ts
+@@ -7,8 +7,9 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+   styleUrls: ['./upload.component.scss'],
+ })
+ export class UploadComponent {
++  previewSafeUrl: any;
+   uploadForm: FormGroup;
+-  constructor(private fb: FormBuilder) {
++  constructor(private fb: FormBuilder ) {
+     this.uploadForm = this.fb.group({
+       title: ['', Validators.required],
+       description: ['', Validators.required],
+@@ -36,7 +37,6 @@ export class UploadComponent {
+     //this.uploadForm.reset();
+   }
+ 
+-
+   onImageChange(event: Event) {
+     const inputElement = event.target as HTMLInputElement;
+     if (inputElement.files && inputElement.files.length > 0) {
+@@ -44,9 +44,8 @@ export class UploadComponent {
+       const imageControl = this.uploadForm.get('image');
+       const titleControl = this.uploadForm.get('title');
+ 
+-      if (imageControl) {
+-        imageControl.setValue(file);
+-      }
++      var url = URL.createObjectURL(file);
++      this.previewSafeUrl=url;
+ 
+       if (titleControl) {
+         titleControl.setValue(file.name);
+@@ -61,4 +60,4 @@ export class UploadComponent {
+   get keywords() {
+     return this.uploadForm.get('keywords') as FormArray;
+   }
+-}
+\ No newline at end of file
++}
