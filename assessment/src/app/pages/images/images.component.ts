@@ -8,6 +8,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { ImagesService } from 'src/app/services/image.service';
 
 
 @Component({
@@ -26,12 +27,12 @@ export class ImagesComponent implements OnInit {
   keywordFormControl: FormControl;
   isHovered: boolean = false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public imagesService: ImagesService) {
     this.filterForm = this.fb.group({
       keywordFilter: [''],
     });
 
-    this.keywordFormControl = this.filterForm.get('keywordFilter') as FormControl; 
+    this.keywordFormControl = this.filterForm.get('keywordFilter') as FormControl;
 
     this.keywordFormControl.valueChanges
       .pipe(
@@ -50,21 +51,10 @@ export class ImagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.images = [...girlImages]; 
-
-    const storedImages = localStorage.getItem('storedImages');
-    if (storedImages) {
-      this.images = JSON.parse(storedImages);
-    }
+    this.images = this.imagesService.initializeImages();
   }
 
-  deleteImage(image: data) {
-    const index = this.images.indexOf(image);
-    if (index !== -1) {
-      this.images.splice(index, 1);
-      this.updateLocalStorage();
-    }
-  }
+  
 
   updateLocalStorage() {
     localStorage.setItem('storedImages', JSON.stringify(this.images));
