@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { MainService } from 'src/app/services/main.service';
-import {data as DataInf} from 'src/app/services/mockData'
+import {data as DataInf} from 'src/app/services/mockData';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-upload',
