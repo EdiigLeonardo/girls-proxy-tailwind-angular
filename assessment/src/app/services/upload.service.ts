@@ -7,6 +7,7 @@ import { MainService } from 'src/app/services/main.service';
 })
 export class UploadService {
   uploadForm: FormGroup;
+  previewSafeUrl : any;
 
   constructor(private fb: FormBuilder, private mainService: MainService) {
     this.uploadForm = this.fb.group({
@@ -39,9 +40,7 @@ export class UploadService {
     //this.uploadForm.reset();
   }
 
-  onImageChange(event: Event): void {
-    // ... rest of the code
-  }
+  
 
   addKeyword(): void {
     this.keywords.push(this.fb.control(''));
