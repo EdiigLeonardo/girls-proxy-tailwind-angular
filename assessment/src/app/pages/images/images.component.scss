@@ -59,6 +59,11 @@
                 width: 100%;
                 overflow: hidden;
                 text-overflow: colapse;
+                .description_footer{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0.2rem;
+                }
             }
         }
     }
