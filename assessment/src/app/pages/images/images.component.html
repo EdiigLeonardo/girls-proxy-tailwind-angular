@@ -1,4 +1,4 @@
-<div class="image_layout bg-slate-50">
+<div class="image_layout bg-slate-50" *ngIf="this.images.length">
   <div class="image_icons">
     <div class="form-control">
       <label class="input-group">
@@ -30,4 +30,7 @@
       </div>
     </div>
   </div>
+</div>
+<div class="image_layout bg-slate-50" *ngIf="!this.images.length">
+  <h2 class="text-[black]">Sem imagens para dispor no momento</h2>
 </div>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { MainService } from 'src/app/services/main.service';
+import {data as DataInf} from 'src/app/services/mockData'
 
 @Component({
   selector: 'app-upload',
@@ -10,7 +12,8 @@ export class UploadComponent {
   previewSafeUrl: any;
   uploadForm: FormGroup;
   formData: any = {};
-  constructor(private fb: FormBuilder ) {
+  data: DataInf[] = [];
+  constructor(private fb: FormBuilder, public mainService: MainService ) {
     this.uploadForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -28,15 +31,17 @@ export class UploadComponent {
       for (const controlName of formControls) {
         const control = this.uploadForm.get(controlName);
         if (control) {
-          this.formData[controlName] = control.value;
+          this.formData[controlName] = controlName === "image"? this.previewSafeUrl : control.value;
         }
       }
-      console.log(this.formData);
+      this.data = this.mainService.getDataFromLocalStorage('storedImages')
+      this.data.unshift(this.formData);
+      this.mainService.updateLocalStorage('storedImages', this.data);
+      this.uploadForm.reset();
+      this.previewSafeUrl = "";
     } else {
-      console.log('Formulário inválido');
+      alert('Formulário inválido, verifique se está devidamente preenchido');
     }
-
-    //this.uploadForm.reset();
   }
 
   onImageChange(event: Event) {
@@ -46,7 +51,7 @@ export class UploadComponent {
       const imageControl = this.uploadForm.get('image');
       const titleControl = this.uploadForm.get('title');
 
-      var url = URL.createObjectURL(file);
+      let url = URL.createObjectURL(file);
       this.previewSafeUrl=url;
 
       if (titleControl) {
