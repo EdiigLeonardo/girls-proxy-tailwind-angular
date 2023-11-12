@@ -1,9 +1,9 @@
-<div class="nav_header">
+<div class="nav_header" ngClass="this.shadow ? shadow-sm : flex">
   <h1>Listagem</h1>
-  <span class="btn btn-ghost bg-[#ff000080]">
+  <span *ngIf="this.isImage" class="btn btn-ghost bg-[#ff000080]" (click)="toggleIsImage()">
     <a routerLink="upload">Fazer Upload</a>
   </span>
-  <span class="btn btn-ghost bg-[#ff000080]">
+  <span *ngIf="!this.isImage" class="btn btn-ghost bg-[#ff000080]" (click)="toggleIsImage()">
     <a routerLink="images">Ver Imagens</a>
   </span>
 </div>

@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 export class UploadComponent {
   previewSafeUrl: any;
   uploadForm: FormGroup;
+  formData: any[] = [];
   constructor(private fb: FormBuilder ) {
     this.uploadForm = this.fb.group({
       title: ['', Validators.required],
@@ -27,7 +28,8 @@ export class UploadComponent {
       for (const controlName of formControls) {
         const control = this.uploadForm.get(controlName);
         if (control) {
-          console.log('FormData:', controlName, control.value);
+          this.formData.push({controlName: control.value})
+          console.log(controlName, control.value, this.formData);
         }
       }
     } else {

@@ -12,9 +12,14 @@ export class NavComponent {
   shadow: boolean = false;
   navBg: string = 'white';
   linkColor: string = '#1f2937';
+  isImage: boolean = true;
 
   handleNav() {
     this.nav = !this.nav;
+  }
+
+  toggleIsImage(): boolean{
+    return this.isImage = !this.isImage;
   }
 
   ngOnInit() {
