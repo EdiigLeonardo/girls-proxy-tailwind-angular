@@ -31,6 +31,9 @@ export class UploadComponent {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
+
+     //this.previewSafeUrl = new Blob([file], { type: file.type });
+
       this.previewSafeUrl = URL.createObjectURL(file);
 
       const titleControl = this.uploadForm.get('title');
@@ -74,9 +77,14 @@ export class UploadComponent {
     return formData;
   }
 
-  private saveData(formData: any) {
+  private saveData(formData: DataInf) {
     const storedImages = this.mainService.getDataFromLocalStorage('storedImages');
     storedImages.unshift(formData);
     this.mainService.updateLocalStorage('storedImages', storedImages);
+  }
+
+  isValidUrl(url: string): boolean {
+    const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    return urlPattern.test(url);
   }
 }
