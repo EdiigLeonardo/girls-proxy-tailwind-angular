@@ -1,0 +1,13 @@
+
+<div *ngIf="showModal" class="modal">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Hello!</h3>
+      <p class="py-4">Press ESC key or click the button below to close</p>
+      <div class="modal-action">
+        <form (submit)="closeModal()" method="dialog">
+          <!-- if there is a button in the form, it will close the modal -->
+          <button type="button" class="btn" (click)="closeModal()">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
