@@ -1,10 +1,11 @@
 .image_layout{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     max-width: 100vw;
     width: 100%;
     padding: 1rem;
+    padding-top: 2.5rem;
 
     .image_icons{
         display: flex;
@@ -75,11 +76,11 @@
             padding: 1.2rem;
         }
 
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 750px) {
             grid-template-columns: repeat(2, calc(100% / 2));
             padding: 1.2rem;
         }
-        @media only screen and (max-width: 400px) {
+        @media only screen and (max-width: 520px) {
             grid-template-columns: repeat(1, calc(100% / 1));
             padding: 0.2rem;
         }

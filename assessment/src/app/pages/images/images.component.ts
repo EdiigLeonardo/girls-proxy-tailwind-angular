@@ -43,6 +43,9 @@ export class ImagesComponent implements OnInit {
         if (value) {
           this.keywordFilter$.next(value);
         }
+        else{
+          this.keywordFilter$.next('');
+        }
       });
 
     this.keywordFilter$.subscribe((keyword) => {

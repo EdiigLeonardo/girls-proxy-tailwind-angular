@@ -36,7 +36,8 @@ export class ImagesService {
   filterImages(keyword: string): void {
     if (keyword) {
       this.images = this.images.filter((image) => image.keywords.includes(keyword));
-    } else {
+    }
+    else{
       this.images = this.mainService.getDataFromLocalStorage('storedImages');
     }
   }

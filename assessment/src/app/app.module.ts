@@ -9,11 +9,13 @@ import { NavComponent } from './components/nav/nav.component';
 import { UploadModule } from './modules/upload/upload.module';
 import { ImagesModule } from './modules/images/images.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
