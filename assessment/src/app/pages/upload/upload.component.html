@@ -1,46 +1,52 @@
-<div class="bg-slate-50">
-  <h1>Upload Images</h1>
-
-  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label>Title:</label>
-      <input type="text" formControlName="title" />
+<div class="bg-slate-50 px-4 w-full h-full">
+  <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="form w-full h-screen p-8">
+    <div class="form-header flex justify-between">
+      <h1>Upload de Ficheiros</h1>
+      <button type="submit" class="btn bg-ghost bg-[#ff000080]">Finalize Upload</button>
     </div>
-
-    <div>
-      <label>Image:</label>
-      <input type="file" formControlName="image" (change)="onImageChange($event)"   />
-    </div>
-
-    <div>
-      <label>Description:</label>
-      <input type="text" formControlName="description" />
-    </div>
-
-    <div>
-      <label>Price:</label>
-      <input type="number" formControlName="price" />
-    </div>
-
-    <div formArrayName="keywords">
-      <label>Keywords:</label>
-      <div *ngFor="let keyword of keywords.controls; let i = index">
-        <input type="text" [formControlName]="i" />
+    <div class="form-body grid grid-cols-2 py-3">
+      <div class="w-[90%] h-[100%] border flex justify-center items-center p-2">
+        <img [src]="previewSafeUrl" alt="Preview" *ngIf="previewSafeUrl" class="object-cover h-full"/>
+        <span class="flex text-center justify-center align-center h-full items-center" *ngIf="!previewSafeUrl">No images to Preview</span>
       </div>
-      <button type="button" (click)="addKeyword()">Add Keyword</button>
+      <div class="form-controls h-full">
+        <div class="form-control-labels">
+          <label>Title:</label>
+          <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-screen"
+            formControlName="title" />
+        </div>
+
+        <div class="form-control-labels">
+          <label>Image:</label>
+          <input type="file" formControlName="image" (change)="onImageChange($event)"
+            class="flex input input-bordered w-full max-w-screen align-center justify-center py-[0.5rem]" />
+        </div>
+
+        <div class="form-control-labels">
+          <label>Description:</label>
+          <textarea class="textarea textarea-bordered" placeholder="Add Description" formControlName="description"></textarea>
+        </div>
+
+        <div class="form-control-labels">
+          <label>Price:</label>
+          <input type="number" formControlName="price" class="input input-bordered w-full max-w-screen" />
+        </div>
+
+        <div formArrayName="keywords" class="form-control-labels-keywords overflow-x-auto max-w-full max-h-20">
+          <label>Keywords:</label>
+          <div class="flex gap-[0.2rem] input input-bordered py-[0.4rem] items-start max-w-100%">
+            <button type="button" (click)="addKeyword()" class="btn btn-sm btn-neutral">Add Keyword</button>
+            <div *ngFor="let keyword of keywords.controls; let i = index">
+              <input type="text" [formControlName]="i" class="border input-sm input-group-xs max-w-xs max-h-full" placeholder="Type Keyword"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-control-labels">
+          <label>Created On:</label>
+          <input type="date" formControlName="createdOn" class="input input-bordered"/>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <label>Created On:</label>
-      <input type="date" formControlName="createdOn" />
-    </div>
-
-
-    <div *ngIf="previewSafeUrl">
-      <label>Image Preview:</label>
-      <img [src]="previewSafeUrl" alt="Preview" />
-    </div>
-
-    <button type="submit">Finalize Upload</button>
   </form>
 </div>

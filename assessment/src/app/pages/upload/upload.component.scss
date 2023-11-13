@@ -1,14 +1,4 @@
-.form-group {
-  margin-bottom: 20px;
-}
-
-.input-group-text {
-  background-color: #ffffff;
-  color: #737373;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #ffffff;
+.form-control-labels{
+  display: flex;
+  flex-direction: column;
 }

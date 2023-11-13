@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.mainService.updateLocalStorage('storedImages', girlImages);
+    //this.mainService.updateLocalStorage('storedImages', girlImages);
   }
   
 }
