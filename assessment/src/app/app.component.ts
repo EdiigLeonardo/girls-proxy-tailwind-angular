@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from './services/main.service';
 import {girlImages} from 'src/app/services/mockData';
 import {data} from 'src/app/services/mockData';
-import {ModalComponent} from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +10,17 @@ import {ModalComponent} from 'src/app/components/modal/modal.component';
 })
 export class AppComponent implements OnInit {
   title = 'Reditus | Edig Leonardo';
+  mockImages: any[] = [];
   girlImages: any[] = [];
   isModalOpen = true;
 
-  constructor(public mainService: MainService, private modalComponent: ModalComponent){
+  constructor(public mainService: MainService){
   }
   
   ngOnInit() {
-    this.girlImages = <any>this.mainService.updateLocalStorage('storedImages', girlImages);
-    if(this.girlImages){
-      this.isModalOpen = false;
+    this.mockImages = <any>this.mainService.getDataFromLocalStorage('storedImages');
+    if(!this.mockImages){
+      this.mainService.updateLocalStorage('storedImages', girlImages)
     }
   }
   

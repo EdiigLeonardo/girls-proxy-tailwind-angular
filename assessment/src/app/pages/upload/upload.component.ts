@@ -8,12 +8,15 @@ import { data as DataInf } from 'src/app/services/mockData';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
 })
+
 export class UploadComponent {
   previewSafeUrl: any;
   uploadForm: FormGroup;
+  reader: FileReader;
 
   constructor(private fb: FormBuilder, public mainService: MainService) {
     this.uploadForm = this.createUploadForm();
+    this.reader = new FileReader();
   }
 
   onSubmit() {
@@ -27,16 +30,24 @@ export class UploadComponent {
     }
   }
 
+  onLoad(){
+    const s:string|undefined = this.reader.result?.toString();
+    localStorage.setItem("image", s!  );
+    console.log( s  );
+    this.previewSafeUrl = s;
+  }
+
   onImageChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     if (inputElement.files && inputElement.files.length > 0) {
       const file = inputElement.files[0];
 
-     //this.previewSafeUrl = new Blob([file], { type: file.type });
+      var blob = new Blob([file], { type: file.type });
 
-      this.previewSafeUrl = URL.createObjectURL(file);
-
+      this.reader.addEventListener("load", this.onLoad.bind(this) , false);
+      this.reader.readAsDataURL( blob );
       const titleControl = this.uploadForm.get('title');
+
       if (titleControl) {
         titleControl.setValue(file.name);
       }

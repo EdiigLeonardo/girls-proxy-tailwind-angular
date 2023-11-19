@@ -1,10 +1,10 @@
-<div class="bg-slate-50 px-4 w-full h-full">
+<div class="bg-slate-50 px-4 w-full h-full pb-6">
   <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="form w-full h-screen p-8">
     <div class="form-header flex justify-between">
       <h1>Upload de Ficheiros</h1>
       <button type="submit" class="btn bg-ghost bg-[#ff000080]">Finalize Upload</button>
     </div>
-    <div class="form-body grid grid-cols-2 py-3">
+    <div class="form-body grid grid-cols-1 py-3 sm:grid-cols-2">
       <div class="w-[90%] h-[100%] border flex justify-center items-center p-2">
         <img [src]="previewSafeUrl" alt="Preview" *ngIf="previewSafeUrl" class="object-cover h-full"/>
         <span class="flex text-center justify-center align-center h-full items-center" *ngIf="!previewSafeUrl">No images to Preview</span>
@@ -34,7 +34,7 @@
 
         <div formArrayName="keywords" class="form-control-labels-keywords overflow-x-auto max-w-full max-h-20">
           <label>Keywords:</label>
-          <div class="flex gap-[0.2rem] input input-bordered py-[0.4rem] items-start max-w-100%">
+          <div class="flex flex-wrap h-auto gap-[0.2rem] input input-bordered py-[0.4rem] items-start max-w-[100%]">
             <button type="button" (click)="addKeyword()" class="btn btn-sm btn-neutral">Add Keyword</button>
             <div *ngFor="let keyword of keywords.controls; let i = index">
               <input type="text" [formControlName]="i" class="border input-sm input-group-xs max-w-xs max-h-full" placeholder="Type Keyword"/>

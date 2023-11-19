@@ -10,14 +10,12 @@ import { UploadModule } from './modules/upload/upload.module';
 import { ImagesModule } from './modules/images/images.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './components/footer/footer.component';
-import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    FooterComponent,
-    ModalComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,6 @@
     width: 100%;
     padding: 1rem;
     padding-top: 2.5rem;
-
     .image_icons{
         display: flex;
         justify-content: flex-end;
@@ -29,9 +28,6 @@
             width: 100%;
             max-height: 20rem;
             min-height: 20rem;
-            background-color: #f0f0f0;
-
-
             .image_container{
                 width: 100%;
                 height: 80%;
@@ -62,12 +58,10 @@
                 flex-direction: column;
                 justify-content: space-evenly;
                 width: 100%;
-                overflow: hidden;
-                text-overflow: colapse;
+                font-size: -1em;
                 .description_footer{
                     display: flex;
                     justify-content: space-between;
-                    padding: 0.2rem;
                 }
             }
         }
