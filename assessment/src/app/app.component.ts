@@ -11,7 +11,7 @@ import {data} from 'src/app/services/mockData';
 export class AppComponent implements OnInit {
   title = 'Reditus | Edig Leonardo';
   mockImages: any[] = [];
-  girlImages: any[] = [];
+  girlImages = girlImages;
   isModalOpen = true;
 
   constructor(public mainService: MainService){
@@ -19,7 +19,8 @@ export class AppComponent implements OnInit {
   
   ngOnInit() {
     this.mockImages = <any>this.mainService.getDataFromLocalStorage('storedImages');
-    if(!this.mockImages){
+    console.log(this.mockImages);
+    if(this.mockImages.length === 0){
       this.mainService.updateLocalStorage('storedImages', girlImages)
     }
   }
