@@ -14,7 +14,6 @@
       <div class="image_container">
         <img [src]="item.image" alt="{{ item.title }}" class="image max-w-full max-h-full" />
         <button (click)="this.imagesService.deleteImage(item);" class="btn btn-ghost btn-icon-delete" *ngIf="!this.isHovered">
-          <!-- Essa feature do this.isHovered está por ser melhorada -->
           <fa-icon [icon]='faTrash'></fa-icon>
         </button>
         <button class="btn btn-ghost btn-icon-download" *ngIf="!this.isHovered">
