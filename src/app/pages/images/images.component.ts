@@ -10,7 +10,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { ImagesService } from 'src/app/services/image.service';
 
-
 @Component({
   selector: 'app-images',
   templateUrl: './images.component.html',
@@ -42,8 +41,7 @@ export class ImagesComponent implements OnInit {
       .subscribe((value) => {
         if (value) {
           this.keywordFilter$.next(value);
-        }
-        else{
+        } else {
           this.keywordFilter$.next('');
         }
       });
@@ -56,8 +54,6 @@ export class ImagesComponent implements OnInit {
   ngOnInit() {
     this.images = this.imagesService.initializeImages();
   }
-
-  
 
   updateLocalStorage() {
     localStorage.setItem('storedImages', JSON.stringify(this.images));
@@ -74,5 +70,16 @@ export class ImagesComponent implements OnInit {
         this.images = JSON.parse(storedImages);
       }
     }
+  }
+
+  downloadImage(url: string, filename: string) {
+    this.imagesService.downloadImage(url).subscribe((blob) => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
   }
 }

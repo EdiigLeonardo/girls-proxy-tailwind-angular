@@ -16,7 +16,7 @@
         <button (click)="this.imagesService.deleteImage(item);" class="btn btn-ghost btn-icon-delete" *ngIf="!this.isHovered">
           <fa-icon [icon]='faTrash'></fa-icon>
         </button>
-        <button class="btn btn-ghost btn-icon-download" *ngIf="!this.isHovered">
+        <button class="btn btn-ghost btn-icon-download" *ngIf="!this.isHovered" (click)="downloadImage(item.image,item.image )">
           <fa-icon [icon]='faDownload'></fa-icon>
         </button>
       </div>
